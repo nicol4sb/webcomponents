@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Web Components</title>
+</head>
+
+<body>
+	<template id="list-item">
+		<li>
+			<h1>A Movie Title</h1>
+			<p>A Movie Plot</p>
+		</li>
+	</template>
+	<ul id="movie-list"></ul>
+	<script>
+		const movies = [{
+			title: 'Lord of the Rings',
+			plot: 'The ring must be destroyed.'
+		},
+		{
+			title: 'Lord of the Blah',
+			plot: 'The ring must be blahed.'
+		}];
+		const $template = document.getElementById("list-item");
+		const $list = document.getElementById("movie-list");
+		movies.forEach((movie) => {
+			const $clone = document.importNode($template.content, true);
+			$clone.querySelector("h1").innerHTML = movie.title;
+			$clone.querySelector("p").innerHTML = movie.plot;
+			$list.appendChild($clone);
+		})
+	</script>
+</body>
+
+</html>
